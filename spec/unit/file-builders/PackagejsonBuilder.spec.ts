@@ -39,7 +39,8 @@ describe('PackagejsonBuilder', () => {
             'kysely',
             'openapi-typescript',
             'pg',
-            'winston',
+            'koa-pino-logger',
+            'pino',
           ]),
         )
 
@@ -147,7 +148,8 @@ describe('PackagejsonBuilder', () => {
             'kysely',
             'openapi-typescript',
             'pg',
-            'winston',
+            'koa-pino-logger',
+            'pino',
           ]),
         )
 
@@ -187,7 +189,8 @@ describe('PackagejsonBuilder', () => {
             'pg',
             'socket.io-adapter',
             'socket.io',
-            'winston',
+            'koa-pino-logger',
+            'pino',
           ]),
         )
 
@@ -222,7 +225,8 @@ describe('PackagejsonBuilder', () => {
             'pg',
             'socket.io-adapter',
             'socket.io',
-            'winston',
+            'koa-pino-logger',
+            'pino',
           ]),
         )
       })

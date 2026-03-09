@@ -7,16 +7,16 @@ import importDefault from '@conf/system/importDefault.js'
 import srcPath from '@conf/system/srcPath.js'
 import * as path from 'node:path'
 
-import winstonLogger from '@conf/winstonLogger.js'
-import requestLogger from '@middleware/requestLogger.js'
+import pinoLogger from '@conf/pinoLogger.js'
 import type Koa from 'koa'
-import winston from 'winston'
+import koaPinoLogger from 'koa-pino-logger'
 
 export default async (psy: PsychicApp) => {
   Error.stackTraceLimit = 50
 
   const apiRoot = srcPath('..')
-  psy.set('logger', winstonLogger(apiRoot))
+  const logger = pinoLogger()
+  psy.set('logger', logger)
 
   await psy.load('controllers', srcPath('..', 'src', 'api', 'app', 'controllers'), path => importDefault(path))
   await psy.load('services', srcPath('..', 'src', 'api', 'app', 'services'), path => importDefault(path))
@@ -163,29 +163,13 @@ export default async (psy: PsychicApp) => {
     const app = psychicServer.koaApp
 
     if (!AppEnv.isTest || AppEnv.boolean('REQUEST_LOGGING')) {
-      const SENSITIVE_FIELDS = ['password', 'token', 'authentication', 'authorization', 'secret']
 
       app.use(
-        requestLogger({
-          transports: [new winston.transports.Console()],
-          format: winston.format.combine(winston.format.json()),
-          meta: true,
-          colorize: false,
-          headerBlacklist: [
-            'authorization',
-            'content-length',
-            'connection',
-            'cookie',
-            'sec-ch-ua',
-            'sec-ch-ua-mobile',
-            'sec-ch-ua-platform',
-            'sec-fetch-dest',
-            'sec-fetch-mode',
-            'sec-fetch-site',
-            'user-agent',
-          ],
-          ignoredRoutes: ['/health_check'],
-          bodyBlacklist: SENSITIVE_FIELDS,
+        koaPinoLogger({
+          logger,
+          autoLogging: {
+            ignore: (req) => req.url === '/health_check',
+          },
         }),
       )
     }

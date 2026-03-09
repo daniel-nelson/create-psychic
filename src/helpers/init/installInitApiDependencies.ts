@@ -35,6 +35,7 @@ export default async function installInitApiDependencies(options: InitPsychicApp
     '@types/koa-conditional-get',
     '@types/koa-etag',
     '@types/koa',
+    '@types/koa-pino-logger',
     'expect-playwright',
     'nodemon',
     'puppeteer',
@@ -64,7 +65,8 @@ export default async function installInitApiDependencies(options: InitPsychicApp
     'koa-bodyparser',
     'koa-conditional-get',
     'openapi-typescript',
-    'winston',
+    'pino',
+    'koa-pino-logger',
   ]
   const depsArr = options.dreamOnly ? baseDeps : [...baseDeps, ...psychicDeps]
 
