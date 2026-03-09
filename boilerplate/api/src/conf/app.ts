@@ -7,9 +7,8 @@ import importDefault from '@conf/system/importDefault.js'
 import srcPath from '@conf/system/srcPath.js'
 import * as path from 'node:path'
 
-import pinoLogger from '@conf/pinoLogger.js'
+import pinoLogger, { koaPinoMiddleware } from '@conf/pinoLogger.js'
 import type Koa from 'koa'
-import koaPinoLogger from 'koa-pino-logger'
 
 export default async (psy: PsychicApp) => {
   Error.stackTraceLimit = 50
@@ -159,12 +158,11 @@ export default async (psy: PsychicApp) => {
     if (!AppEnv.isTest || AppEnv.boolean('REQUEST_LOGGING')) {
 
       app.use(
-        koaPinoLogger({
+        koaPinoMiddleware({
           logger,
           autoLogging: {
-            ignore: (req) => req.url === '/health_check',
+            ignore: req => req.url === '/health_check',
           },
-        }),
       )
     }
   })
