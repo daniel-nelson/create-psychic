@@ -41,7 +41,6 @@ export default class TsConfigBuilder {
 
     paths['@conf/*'] = [`./${options.confPath}/*`]
     paths['@controllers/*'] = [`./${options.controllersPath}/*`]
-    paths['@middleware/*'] = [`./${options.middlewarePath}/*`]
     paths['@models/*'] = [`./${options.modelsPath}/*`]
     paths['@serializers/*'] = [`./${options.serializersPath}/*`]
     paths['@services/*'] = [`./${options.servicesPath}/*`]

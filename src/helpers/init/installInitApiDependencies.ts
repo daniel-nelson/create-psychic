@@ -34,7 +34,6 @@ export default async function installInitApiDependencies(options: InitPsychicApp
     '@types/koa-bodyparser',
     '@types/koa-conditional-get',
     '@types/koa-etag',
-    '@types/koa-passport',
     '@types/koa',
     'expect-playwright',
     'nodemon',

@@ -131,12 +131,6 @@ export default async function buildInitPsychicAppOptionsWithPrompt(options: Init
     options.controllersPath = answer || defaultVal
   }
 
-  if (options.middlewarePath === undefined && !options.dreamOnly) {
-    const defaultVal = path.join('.', 'src', 'middleware')
-    const answer = await prompt(`What would you like your middleware path to be? (defaults to ${defaultVal}`)
-    options.middlewarePath = answer || defaultVal
-  }
-
   if (options.modelsPath === undefined) {
     const defaultVal = path.join('.', 'src', 'app', 'models')
     const answer = await prompt(`What would you like your models path to be? (defaults to ${defaultVal}`)

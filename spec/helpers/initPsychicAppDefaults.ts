@@ -11,7 +11,6 @@ export default function initPsychicAppDefaults(): InitPsychicAppCliOptions {
     primaryKeyType: 'bigserial',
     confPath: 'src/api/conf',
     controllersPath: 'src/api/app/controllers',
-    middlewarePath: 'src/api/middleware',
     modelsPath: 'src/api/app/models',
     servicesPath: 'src/api/app/services',
     serializersPath: 'src/api/app/serializers',

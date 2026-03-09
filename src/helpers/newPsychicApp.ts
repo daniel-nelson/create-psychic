@@ -45,7 +45,6 @@ export interface InitPsychicAppCliOptions {
   modelsPath: string
   servicesPath: string
   controllersPath: string
-  middlewarePath: string
   confPath: string
   factoriesPath: string
   modelSpecsPath: string
